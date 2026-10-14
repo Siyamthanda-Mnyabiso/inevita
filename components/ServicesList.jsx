@@ -15,16 +15,37 @@ export default function ServicesList() {
   const [active, setActive] = useState(0);
   const rows = useRef([]);
 
+  // Active row = the one closest to the middle of the screen. Measured on scroll
+  // (not with an IntersectionObserver band) so fast flicks on touch never skip a row.
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(Number(e.target.dataset.i));
-        }),
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
-    rows.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const mid = window.innerHeight / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      rows.current.forEach((el, i) => {
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const dist = Math.abs(r.top + r.height / 2 - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      setActive(best);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   const cur = services[active];
@@ -58,11 +79,11 @@ export default function ServicesList() {
         dragMomentum={false}
         whileDrag={{ scale: 1.05, cursor: "grabbing" }}
         data-cursor
-        className="fixed right-4 bottom-4 z-20 grid h-32 w-24 sm:h-44 sm:w-36 cursor-grab touch-none place-items-center rounded-2xl border border-current/20 p-4 text-center shadow-2xl md:right-10 md:bottom-10 md:h-64 md:w-52"
+        className="fixed right-4 bottom-4 z-20 grid h-32 w-28 sm:h-44 sm:w-36 cursor-grab touch-none place-items-center rounded-2xl border border-current/20 p-3 text-center sm:p-4 shadow-2xl md:right-10 md:bottom-10 md:h-64 md:w-52"
         animate={{ backgroundColor: cur.fg, color: cur.bg }}
         transition={{ duration: 0.6 }}
       >
-        <span className="select-none text-sm font-semibold">{cur.name}</span>
+        <span className="select-none break-words text-xs font-semibold sm:text-sm">{cur.name}</span>
       </motion.div>
     </motion.section>
   );

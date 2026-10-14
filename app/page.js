@@ -22,8 +22,8 @@ export default function Home() {
       <Loader />
       <Cursor />
 
-      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-background/80 px-6 py-3 backdrop-blur-md md:px-10 md:py-4">
-        <a href="#top" className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2.5 text-lg font-semibold tracking-tight text-foreground">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-6 pt-3 md:pt-5">
+        <a href="#top" className="pointer-events-auto flex items-center gap-2.5 rounded-full bg-white/90 px-4 py-2 text-base font-semibold tracking-tight text-foreground shadow-sm backdrop-blur-md md:text-lg">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.svg" alt="" className="h-8 w-auto" />
           Inevita
