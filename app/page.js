@@ -4,6 +4,7 @@ import Loader from "@/components/Loader";
 import ProcessStack from "@/components/ProcessStack";
 import ServicesList from "@/components/ServicesList";
 import ScrollLine from "@/components/ScrollLine";
+import TrustedBy from "@/components/TrustedBy";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Fade, Words } from "@/components/Reveal";
 
@@ -105,6 +106,8 @@ export default function Home() {
           </div>
         </section>
         <ProcessStack />
+
+        <TrustedBy />
 
         {/* Contact */}
         <section id="contact" className={`${wrap} relative z-10 py-24 md:py-32`}>
