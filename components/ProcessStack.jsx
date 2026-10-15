@@ -20,10 +20,10 @@ function Card({ step, i, n, progress }) {
         last ? "" : "mb-[18vh]"
       }`}
     >
-      <h3 className="text-[clamp(3.5rem,16vw,15rem)] font-semibold leading-[0.85] tracking-tighter">
+      <h3 className="pb-[0.2em] text-[clamp(3.5rem,16vw,15rem)] font-semibold leading-[0.85] tracking-tighter">
         {step.name}
       </h3>
-      <p className="mt-6 max-w-md text-lg md:text-xl">{step.line}</p>
+      <p className="mt-2 max-w-xl text-lg md:text-xl">{step.line}</p>
     </motion.article>
   );
 }

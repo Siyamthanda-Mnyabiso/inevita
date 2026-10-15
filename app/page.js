@@ -1,3 +1,4 @@
+import ContactForm from "@/components/ContactForm";
 import Cursor from "@/components/Cursor";
 import Loader from "@/components/Loader";
 import ProcessStack from "@/components/ProcessStack";
@@ -41,9 +42,13 @@ export default function Home() {
             <Words text="inevitable." className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]" delay={1.6} />
           </h1>
           <div className="mt-8 flex items-end justify-between gap-8 md:mt-12">
-            <p className="max-w-sm text-base text-foreground/70 md:text-lg">
-              Inevita builds brands and digital experiences that people remember and come back to.
-            </p>
+            <div className="max-w-md">
+              <p className="mb-3 text-sm font-medium">Creative Strategy · Production · Innovation</p>
+              <p className="text-base text-foreground/70 md:text-lg">
+                We help brands evolve through strategic thinking, cultural understanding and
+                creative execution.
+              </p>
+            </div>
             <span className="hidden font-sans text-xs uppercase tracking-widest text-foreground/50 md:block">
               Scroll to follow the line
             </span>
@@ -65,9 +70,9 @@ export default function Home() {
           <div className="animate-marquee flex w-max gap-12 whitespace-nowrap text-[18vw] font-semibold md:text-[12vw] leading-none tracking-tighter">
             {[0, 1].map((k) => (
               <span key={k} className="flex gap-12" aria-hidden={k === 1}>
-                <span>Strategy</span><span className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]">Design</span>
-                <span>Motion</span><span className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]">Code</span>
-                <span>Story</span><span className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]">Growth</span>
+                <span>Strategy</span><span className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]">Production</span>
+                <span>Content</span><span className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]">Motion</span>
+                <span>Innovation</span><span className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]">AI</span>
               </span>
             ))}
           </div>
@@ -102,19 +107,26 @@ export default function Home() {
         <ProcessStack />
 
         {/* Contact */}
-        <section id="contact" className={`${wrap} relative z-10 flex min-h-svh flex-col justify-center py-24 md:py-32`}>
-          <h2 className="text-[clamp(2.25rem,11vw,11rem)] font-semibold leading-[0.9] tracking-tighter">
-            <Words text="Let's make" />
-            <br />
-            <Words text="it inevitable." className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]" />
-          </h2>
-          <a
-            href="mailto:hello@inevita.com"
-            data-cursor
-            className="mt-10 w-fit max-w-full break-all border-b-2 border-lime pb-1 text-xl font-medium sm:text-2xl md:mt-12 md:text-4xl"
-          >
-            hello@inevita.com
-          </a>
+        <section id="contact" className={`${wrap} relative z-10 py-24 md:py-32`}>
+          <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+            <div className="flex flex-col justify-between gap-12">
+              <h2 className="text-[clamp(2.25rem,11vw,6rem)] font-semibold leading-[0.9] tracking-tighter lg:text-[clamp(2.25rem,5.2vw,6.5rem)]">
+                <Words text="Let's make" />
+                <br />
+                <Words text="it inevitable." className="bg-lime px-[0.15em] -mx-[0.05em] rounded-[0.12em] text-[#121212]" />
+              </h2>
+              <a
+                href="mailto:hello@inevita.com"
+                data-cursor
+                className="w-fit max-w-full break-all border-b-2 border-lime pb-1 text-xl font-medium sm:text-2xl md:text-3xl"
+              >
+                hello@inevita.com
+              </a>
+            </div>
+            <Fade>
+              <ContactForm />
+            </Fade>
+          </div>
         </section>
       </main>
 
