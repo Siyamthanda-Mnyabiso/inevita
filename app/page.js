@@ -44,7 +44,6 @@ export default function Home() {
           </h1>
           <div className="mt-8 flex items-end justify-between gap-8 md:mt-12">
             <div className="max-w-md">
-              <p className="mb-3 text-sm font-medium">Creative Strategy · Production · Innovation</p>
               <p className="text-base text-foreground/70 md:text-lg">
                 We help brands evolve through strategic thinking, cultural understanding and
                 creative execution.
